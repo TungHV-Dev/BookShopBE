@@ -1,4 +1,4 @@
-﻿using BookShopBE.Common.BaseModels;
+﻿using BookShopBE.Data.BaseModel;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,12 +11,7 @@ namespace BookShopBE.Data.Models
             Books = new HashSet<Book>();
         }
 
-        [Required]
-        [StringLength(50)]
-        public string Name { get; set; }
-
         public string Country { get; set; }
-
         [Required]
         public string Email { get; set; }
 

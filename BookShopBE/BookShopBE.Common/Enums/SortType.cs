@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BookShopBE.Common.BaseModels
+namespace BookShopBE.Common.Enums
 {
-    class RequestBase
+    public enum SortType
     {
+        ASC,
+        DESC
     }
 }

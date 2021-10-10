@@ -1,19 +1,22 @@
-﻿using BookShopBE.Common.BaseModels;
+﻿using BookShopBE.Data.BaseModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookShopBE.Data.Models
 {
-    public class User : ModelBase
+    public class User
     {
         public User()
         {
             RefreshTokens = new HashSet<RefreshToken>();
         }
 
+        [Key]
+        public int Id { get; set; }
+
         [Required]
-        [MaxLength(20)]
+        [MaxLength(30)]
         public string UserName { get; set; }
 
         [Required]
@@ -24,7 +27,6 @@ namespace BookShopBE.Data.Models
 
         public DateTime? DateOfBirth { get; set; }
 
-        [Required]
         public int RoleId { get; set; }
         public Role Role { get; set; }
 

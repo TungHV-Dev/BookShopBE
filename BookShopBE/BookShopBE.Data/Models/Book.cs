@@ -1,6 +1,5 @@
-﻿using BookShopBE.Common.BaseModels;
+﻿using BookShopBE.Data.BaseModel;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace BookShopBE.Data.Models
 {
@@ -12,16 +11,9 @@ namespace BookShopBE.Data.Models
             BookStores = new HashSet<BookStore>();
         }
 
-        [Required]
-        public string Title { get; set; }
-
         public int? Rate { get; set; }
-
         public string Genre { get; set; }
-
-        [Required]
         public double Price { get; set; }
-
         public string Url { get; set; }
 
         public int PublisherId { get; set; }

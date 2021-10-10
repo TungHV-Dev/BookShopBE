@@ -26,7 +26,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Data\\BookShopBE.Data.csproj": {
+                "projectPath": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Data\\BookShopBE.Data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -37,6 +41,22 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.19, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.19, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.19, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -78,11 +98,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {
-              "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\BookShopBE.Common.csproj": {
-                "projectPath": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\BookShopBE.Common.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -95,6 +111,16 @@
         "netcoreapp3.1": {
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.19, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.19, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.19, )"
             }

@@ -1,16 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace BookShopBE.Data.Models
 {
     public class BookStore
     {
         public int Id { get; set; }
-
-        public int? OrderNumber { get; set; }
-
-        public DateTime? OrderDate { get; set; }
-
-        public double? TotalMoney { get; set; }
 
         public int StoreId { get; set; }
         public Store Store { get; set; }

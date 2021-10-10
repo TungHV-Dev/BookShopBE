@@ -5,8 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="InitDB\" />
-    <Folder Include="StoreProcedure\" />
+    <Folder Include="StoreProcedures\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Functions\Get_Author_Id.sql">
+      <SubType>Component</SubType>
+    </None>
+    <None Update="Functions\Get_Store_Id.sql">
+      <SubType>Component</SubType>
+    </None>
   </ItemGroup>
 
 </Project>
