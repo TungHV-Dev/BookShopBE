@@ -1,4 +1,4 @@
-﻿using BookShopBE.Data.BaseModel;
+﻿using BookShopBE.Common.Dtos;
 
 namespace BookShopBE.Common.Constants
 {

@@ -1,7 +1,7 @@
 ﻿using BookShopBE.Common.Constants;
+using BookShopBE.Common.Dtos;
 using BookShopBE.Common.Enums;
 using BookShopBE.Common.Paging;
-using BookShopBE.Data.BaseModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -64,14 +64,14 @@ namespace BookShopBE.Common.Repository
             #endregion
 
             #region Searching
-            if(!String.IsNullOrEmpty(request.Search))
+            if (!String.IsNullOrEmpty(request.Search))
             {
                 result.Data = result.Data.Where(entity => entity.Name.Contains(request.Search, StringComparison.CurrentCultureIgnoreCase)).ToList();
             }
             #endregion
 
             #region Paging
-            if(request.PageNumber == null || request.PageNumber < 1)
+            if (request.PageNumber == null || request.PageNumber < 1)
             {
                 var pagingResult = PaginatedList<TEntity>.Create(result.Data.AsQueryable(), 1, result.PageSize);
                 result.Data = pagingResult;

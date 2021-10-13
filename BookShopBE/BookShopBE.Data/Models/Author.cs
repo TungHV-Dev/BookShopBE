@@ -1,4 +1,4 @@
-﻿using BookShopBE.Data.BaseModel;
+﻿using BookShopBE.Common.Dtos;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,7 +12,7 @@ namespace BookShopBE.Data.Models
         }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(10)]
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 

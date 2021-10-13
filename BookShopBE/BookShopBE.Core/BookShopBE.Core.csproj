@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\Mappings\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookShopBE.Common\BookShopBE.Common.csproj" />
+    <ProjectReference Include="..\BookShopBE.Data\BookShopBE.Data.csproj" />
+  </ItemGroup>
+
+</Project>

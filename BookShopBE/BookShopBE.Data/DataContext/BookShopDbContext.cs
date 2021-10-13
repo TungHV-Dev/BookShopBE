@@ -37,11 +37,11 @@ namespace BookShopBE.Data.DataContext
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
-        public DbSet<Publisher> Publishers { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<BookAuthor> BookAuthors { get; set; }
         public DbSet<BookStore> BookStores { get; set; }
-        public DbSet<Sale> Sales { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }

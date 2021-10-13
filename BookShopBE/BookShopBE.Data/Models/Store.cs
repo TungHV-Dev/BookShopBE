@@ -1,4 +1,4 @@
-﻿using BookShopBE.Data.BaseModel;
+﻿using BookShopBE.Common.Dtos;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

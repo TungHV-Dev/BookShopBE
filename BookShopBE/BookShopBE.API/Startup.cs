@@ -1,4 +1,8 @@
+using BookShopBE.Core.Repositories.Mappings;
+using BookShopBE.Core.Services.Mappings;
 using BookShopBE.Data.DataContext;
+using BookShopBE.Data.Validations;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,9 +33,25 @@ namespace BookShopBE.API
 
             services.AddMvc(option => option.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
+                .AddFluentValidation();
 
             services.AddDbContext<BookShopDbContext>(options => options.UseSqlServer(ConnectionString));
+
+            // Register repositories and services
+            services.AddRepositories();
+            services.AddUnitOfWork();
+            services.AddServices();
+
+            // Register validation
+            services.RegisterModelValidation();
+
+
+            services.AddApiVersioning(config =>
+            {
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
+            });
 
             services.AddSwaggerGen(c =>
             {

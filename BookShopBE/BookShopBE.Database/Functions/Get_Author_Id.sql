@@ -1,15 +1,15 @@
 ﻿USE [BookShopDB]
 GO
 
-CREATE FUNCTION [dbo].[Get_Book_Id] (@BookName NVARCHAR(100))
+CREATE FUNCTION [dbo].[Get_Author_Id] (@AuthorName NVARCHAR(100))
 	RETURNS INT
 AS
 BEGIN
-	DECLARE @BookId INT
-	IF EXISTS (SELECT [Id] FROM [dbo].[Books] WHERE [Books].[Name] = @BookName)
-		SELECT @BookId = [Id]
-		FROM [dbo].[Books] WHERE [Books].[Name] = @BookName
+	DECLARE @AuthorId INT
+	IF EXISTS (SELECT [Id] FROM [dbo].[Authors] WHERE [Authors].[Name] = @AuthorName)
+		SELECT @AuthorId = [Id]
+		FROM [dbo].[Authors] WHERE [Authors].[Name] = @AuthorName
 	ELSE
-		SET @BookId = 0
-	RETURN @BookId
+		SET @AuthorId = 0
+	RETURN @AuthorId
 END

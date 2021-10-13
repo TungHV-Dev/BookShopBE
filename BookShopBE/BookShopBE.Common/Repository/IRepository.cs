@@ -1,6 +1,5 @@
-﻿using BookShopBE.Common.Paging;
-using BookShopBE.Data.BaseModel;
-using System;
+﻿using BookShopBE.Common.Dtos;
+using BookShopBE.Common.Paging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

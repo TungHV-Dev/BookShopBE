@@ -8,8 +8,5 @@ F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Common\obj\Debug\netcoreapp3.1\B
 F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Common\obj\Debug\netcoreapp3.1\BookShopBE.Common.pdb
 F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Common\bin\Debug\netcoreapp3.1\BookShopBE.Common.runtimeconfig.json
 F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Common\bin\Debug\netcoreapp3.1\BookShopBE.Common.runtimeconfig.dev.json
-F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Common\obj\Debug\netcoreapp3.1\BookShopBE.Common.csproj.CoreCompileInputs.cache
 F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Common\obj\Debug\netcoreapp3.1\BookShopBE.Common.genruntimeconfig.cache
-F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Common\bin\Debug\netcoreapp3.1\BookShopBE.Data.dll
-F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Common\bin\Debug\netcoreapp3.1\BookShopBE.Data.pdb
-F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Common\obj\Debug\netcoreapp3.1\BookShopBE.Common.csproj.CopyComplete
+F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Common\obj\Debug\netcoreapp3.1\BookShopBE.Common.csproj.CoreCompileInputs.cache
