@@ -1,49 +1,72 @@
-﻿using BookShopBE.Data.Models;
+﻿using BookShopBE.Data.Configurations;
+using BookShopBE.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookShopBE.Data.DataContext
 {
-    public class BookShopDbContext : DbContext
+    public class BookShopDbContext : IdentityDbContext<User>
     {
         public BookShopDbContext(DbContextOptions<BookShopDbContext> options) : base(options)
         {
 
         }
 
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<BookAuthor> BookAuthors { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UserConfig());
+            modelBuilder.ApplyConfiguration(new RoleConfig());
+            modelBuilder.ApplyConfiguration(new UserRoleConfig());
 
             modelBuilder.Entity<BookAuthor>()
-                .HasOne(b => b.Book)
-                .WithMany(ba => ba.BookAuthors)
-                .HasForeignKey(bi => bi.BookId);
+                .HasOne(book_author => book_author.Book)
+                .WithMany(book => book.BookAuthors)
+                .HasForeignKey(book_author => book_author.BookId);
 
             modelBuilder.Entity<BookAuthor>()
-                .HasOne(b => b.Author)
-                .WithMany(ba => ba.BookAuthors)
-                .HasForeignKey(bi => bi.AuthorId);
+                .HasOne(book_author => book_author.Author)
+                .WithMany(book => book.BookAuthors)
+                .HasForeignKey(book_author => book_author.AuthorId);
 
-            modelBuilder.Entity<BookStore>()
-                .HasOne(b => b.Book)
-                .WithMany(bs => bs.BookStores)
-                .HasForeignKey(bi => bi.BookId);
+            modelBuilder.Entity<Feedback>()
+                .HasOne(feedback => feedback.Customer)
+                .WithMany(customer => customer.Feedbacks)
+                .HasForeignKey(feedback => feedback.CustomerId);
 
-            modelBuilder.Entity<BookStore>()
-                .HasOne(b => b.Store)
-                .WithMany(bs => bs.BookStores)
-                .HasForeignKey(bi => bi.StoreId);
+            modelBuilder.Entity<Feedback>()
+                .HasOne(feedback => feedback.Book)
+                .WithMany(book => book.Feedbacks)
+                .HasForeignKey(feedback => feedback.BookId);
+
+            modelBuilder.Entity<Cart>()
+                .HasOne(cart => cart.Customer)
+                .WithMany(customer => customer.Carts)
+                .HasForeignKey(cart => cart.CustomerId);
+
+            modelBuilder.Entity<Cart>()
+                .HasOne(cart => cart.Book)
+                .WithMany(book => book.Carts)
+                .HasForeignKey(cart => cart.BookId);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(order => order.Customer)
+                .WithMany(customer => customer.Orders)
+                .HasForeignKey(order => order.CustomerId);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(order => order.Book)
+                .WithMany(book => book.Orders)
+                .HasForeignKey(order => order.BookId);
         }
-
-        public DbSet<Book> Books { get; set; }
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<Store> Stores { get; set; }
-        public DbSet<BookAuthor> BookAuthors { get; set; }
-        public DbSet<BookStore> BookStores { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<RefreshToken> RefreshTokens { get; set; }
     }
 }

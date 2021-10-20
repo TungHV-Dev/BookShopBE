@@ -1,17 +1,15 @@
-﻿using BookShopBE.Common.Dtos;
-using BookShopBE.Common.Repository;
-using BookShopBE.Data.Dtos;
+﻿using BookShopBE.Common.Repository;
+using BookShopBE.Data.Dtos.Authors;
+using BookShopBE.Data.Dtos.Books;
 using BookShopBE.Data.Models;
-using BookShopBE.Data.Requests;
-using BookShopBE.Data.Responses;
 using System.Threading.Tasks;
 
 namespace BookShopBE.Core.Repositories.Interfaces
 {
     public interface IAuthorRepository : IRepository<Author>
     {
-        Task Add(AuthorRequest<CreatedDto> request);
-        Task Update(int authorId, AuthorRequest<ModifiedDto> request);
+        Task Add(AddAuthorRequest request);
+        Task Update(UpdateAuthorRequest request);
         Task<AuthorResponse<BookDto>> GetBooksOfAuthor(int authorId);
     }
 }

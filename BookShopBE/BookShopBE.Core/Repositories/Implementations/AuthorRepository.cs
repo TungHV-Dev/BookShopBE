@@ -1,11 +1,9 @@
-﻿using BookShopBE.Common.Dtos;
-using BookShopBE.Common.Repository;
+﻿using BookShopBE.Common.Repository;
 using BookShopBE.Core.Repositories.Interfaces;
 using BookShopBE.Data.DataContext;
-using BookShopBE.Data.Dtos;
+using BookShopBE.Data.Dtos.Authors;
+using BookShopBE.Data.Dtos.Books;
 using BookShopBE.Data.Models;
-using BookShopBE.Data.Requests;
-using BookShopBE.Data.Responses;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +18,7 @@ namespace BookShopBE.Core.Repositories.Implementations
             dbContext = context;
         }
 
-        public async Task Add(AuthorRequest<CreatedDto> request)
+        public async Task Add(AddAuthorRequest request)
         {
             var author = new Author()
             {
@@ -28,8 +26,8 @@ namespace BookShopBE.Core.Repositories.Implementations
                 PhoneNumber = request.authorDto.PhoneNumber,
                 Email = request.authorDto.Email,
                 Description = request.authorDto.Description,
-                CreatedDate = request.authorDto.Dto.CreatedDate,
-                CreatedBy = request.authorDto.Dto.CreatedBy
+                CreatedDate = request.CreatedDate,
+                CreatedBy = request.CreatedBy
             };
             dbContext.Authors.Add(author);
 
@@ -48,15 +46,15 @@ namespace BookShopBE.Core.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Update(int authorId, AuthorRequest<ModifiedDto> request)
+        public async Task Update(UpdateAuthorRequest request)
         {
-            var author = await dbContext.Authors.FindAsync(authorId);
+            var author = await dbContext.Authors.FindAsync(request.authorId);
             author.Name = request.authorDto.Name;
             author.PhoneNumber = request.authorDto.PhoneNumber;
             author.Email = request.authorDto.Email;
             author.Description = request.authorDto.Description;
-            author.ModifiedDate = request.authorDto.Dto.ModifiedDate;
-            author.ModifiedBy = request.authorDto.Dto.ModifiedBy;
+            author.ModifiedDate = request.ModifiedDate;
+            author.ModifiedBy = request.ModifiedBy;
 
             if(request.IsAddOrUpdateBooks)
             {

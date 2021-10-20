@@ -1,34 +1,20 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookShopBE.Data.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        public User()
-        {
-            RefreshTokens = new HashSet<RefreshToken>();
-        }
-
-        [Key]
-        public int Id { get; set; }
-
         [Required]
-        [MaxLength(30)]
-        public string UserName { get; set; }
-
+        [MaxLength(50)]
+        public string FirstName { get; set; }
         [Required]
-        public string Password { get; set; }
-
-        [Required]
-        public string Email { get; set; }
-
-        public DateTime? DateOfBirth { get; set; }
-
-        public int RoleId { get; set; }
-        public Role Role { get; set; }
-
-        public ICollection<RefreshToken> RefreshTokens { get; set; }
+        [MaxLength(50)]
+        public string LastName { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public bool IsActive { get; set; }
+        public List<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
     }
 }

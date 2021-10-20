@@ -5,15 +5,14 @@ namespace BookShopBE.Data.Models
 {
     public class RefreshToken
     {
+        [Key]
         public int Id { get; set; }
-
-        [Required]
-        [MaxLength(200)]
         public string Token { get; set; }
-
         public DateTime ExpiryDate { get; set; }
-
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public bool IsExpired => DateTime.UtcNow >= ExpiryDate;
+        public DateTime CreatedDate { get; set; }
+        public DateTime? RevokedDate { get; set; }
+        public string ReplacedByToken { get; set; }
+        public bool IsActive => RevokedDate == null && !IsExpired;
     }
 }

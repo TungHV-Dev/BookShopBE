@@ -7,8 +7,12 @@ namespace BookShopBE.Core.Repositories.Interfaces
     {
         IAuthorRepository Authors { get; }
         IBookRepository Books { get; }
-        IStoreRepository Stores { get; }
         IOrderRepository Sales { get; }
+        ICustomerRepository Customers { get; }
+        ICartRepository Carts { get; }
+        IOrderRepository Orders { get; }
+        IFeedbackRepository Feedbacks { get; }
+        IUserRepository Users { get; }
         void Complete();
         Task CompleteAsync();
     }

@@ -12,6 +12,10 @@ namespace BookShopBE.Data.Models
         }
 
         [Required]
+        [MaxLength(100)]
+        public string Name { get; set; }
+
+        [Required]
         [StringLength(10)]
         public string PhoneNumber { get; set; }
         public string Email { get; set; }

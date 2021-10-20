@@ -5,14 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="StoreProcedures\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Functions\Get_Author_Id.sql">
-      <SubType>Component</SubType>
-    </None>
-    <None Update="Functions\Get_Store_Id.sql">
+    <None Update="Sql_Functions\Get_Author_Id.sql">
       <SubType>Component</SubType>
     </None>
   </ItemGroup>
