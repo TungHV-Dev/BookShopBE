@@ -3,7 +3,6 @@ using BookShopBE.Core.Repositories.Interfaces;
 using BookShopBE.Data.DataContext;
 using BookShopBE.Data.Dtos.Carts;
 using BookShopBE.Data.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ namespace BookShopBE.Core.Repositories.Implementations
         {
             var cart = new Cart
             {
-                CustomerId = cartDto.CustomerId,
+                UserId = cartDto.UserId,
                 BookId = cartDto.BookId,
                 IsOrder = false,
                 CreatedDate = DateTime.Now,
@@ -36,16 +35,16 @@ namespace BookShopBE.Core.Repositories.Implementations
 
         public async Task<int> GetCartId(CartDto cartDto)
         {
-            int cartId = await dbContext.Carts.Where(cart => cart.CustomerId == cartDto.CustomerId && cart.BookId == cartDto.BookId)
+            int cartId = await dbContext.Carts.Where(cart => cart.UserId == cartDto.UserId && cart.BookId == cartDto.BookId)
                                               .Select(cart => cart.Id)
                                               .FirstOrDefaultAsync();
 
             return cartId;
         }
 
-        public async Task<List<Cart>> GetAllCartOfCustomer(Guid customerId)
+        public async Task<List<Cart>> GetAllCartOfUser(string userId)
         {
-            var carts = await dbContext.Carts.Where(cart => cart.CustomerId == customerId).ToListAsync();
+            var carts = await dbContext.Carts.Where(cart => cart.UserId == userId).ToListAsync();
             return carts;
         }
 

@@ -46,7 +46,7 @@ namespace BookShopBE.Core.Services.Implementations
         #region Public
         public async Task<Result<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request)
         {
-            AuthenticationResponse response = new AuthenticationResponse();
+            var response = new AuthenticationResponse();
 
             var user = await _userManager.FindByNameAsync(request.Username);
             if (user == null)
@@ -89,7 +89,7 @@ namespace BookShopBE.Core.Services.Implementations
             // save refresh token
             user.RefreshTokens.Add(refreshToken);
             await _unitOfWork.Users.UpdateUser(user);
-            await _unitOfWork.CompleteAsync();
+            await _unitOfWork.CompleteAsync(); 
             return Result<AuthenticationResponse>.Success(response);
         }
 
@@ -194,6 +194,17 @@ namespace BookShopBE.Core.Services.Implementations
                 {
                     IsSuccess = false,
                     Error = new Error { Code = 400, Message = ErrorDetails.USER_EMAIL_HAS_ALREADY_EXISTED }
+                };
+            }
+
+            var passwordValidator = new PasswordValidator<User>();
+            var checkPasswordValidator = await passwordValidator.ValidateAsync(_userManager, null, request.Password);
+            if (!checkPasswordValidator.Succeeded)
+            {
+                return new Result
+                {
+                    IsSuccess = false,
+                    Error = new Error { Code = 400, Message = ErrorDetails.PASSWORD_IS_INVALID }
                 };
             }
 

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookShopBE.Data.Models
 {
+    [Owned]
     public class RefreshToken
     {
         [Key]

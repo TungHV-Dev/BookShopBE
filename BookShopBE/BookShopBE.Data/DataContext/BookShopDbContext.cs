@@ -16,10 +16,9 @@ namespace BookShopBE.Data.DataContext
         public DbSet<Author> Authors { get; set; }
         public DbSet<BookAuthor> BookAuthors { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerHasOrder> CustomerHasOrders { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,9 +48,9 @@ namespace BookShopBE.Data.DataContext
                 .HasForeignKey(feedback => feedback.BookId);
 
             modelBuilder.Entity<Cart>()
-                .HasOne(cart => cart.Customer)
-                .WithMany(customer => customer.Carts)
-                .HasForeignKey(cart => cart.CustomerId);
+                .HasOne(cart => cart.User)
+                .WithMany(user => user.Carts)
+                .HasForeignKey(cart => cart.UserId);
 
             modelBuilder.Entity<Cart>()
                 .HasOne(cart => cart.Book)

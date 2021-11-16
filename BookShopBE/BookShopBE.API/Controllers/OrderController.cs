@@ -5,7 +5,6 @@ using BookShopBE.Core.Services.Interfaces;
 using BookShopBE.Data.Dtos.Orders;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -47,7 +46,7 @@ namespace BookShopBE.API.Controllers
         [Authorize(Roles = RoleDetails.ADMINISTRATOR)]
         public async Task<ActionResult<Result<OrderResponse>>> GetOrder(int orderId)
         {
-            var response = await _orderServices.GetOrder(orderId);
+            var response = await _orderServices.GetOrderByOrderId(orderId);
             if (!response.IsSuccess)
             {
                 return NotFound(response);
@@ -57,10 +56,16 @@ namespace BookShopBE.API.Controllers
 
         [HttpPost]
         [Route("Create-Order")]
-        public async Task<ActionResult<Result>> CreateOrder(int bookId, int orderNumber)
+        public async Task<ActionResult<Result>> CreateOrder([FromForm] OrderRequest request)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var order = new OrderDto { CustomerId = Guid.Parse(userId), BookId = bookId, OrderNumber = orderNumber };
+            var order = new OrderDto
+            {
+                CustomerId = userId,
+                BookId = request.BookId,
+                OrderNumber = request.OrderNumber,
+                DeliveryAddress = request.DeliveryAddress
+            };
 
             var response = await _orderServices.CreateOrder(order);
             if(response.Error != null)
@@ -71,6 +76,35 @@ namespace BookShopBE.API.Controllers
                 }
                 return BadRequest(response);
             }
+            return Ok(response);
+        }
+
+        [HttpPut]
+        [Route("Edit-Order")]
+        public async Task<ActionResult<Result>> EditOrder(EditOrderRequest request)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var dto = new EditOrderDto
+            {
+                BookId = request.BookId,
+                CustomerId = userId,
+                OrderId = request.OrderId,
+                OrderNumber = request.OrderNumber,
+                DeliveryAddress = request.DeliveryAddress
+            };
+
+            var response = await _orderServices.EditOrder(dto);
+            if(!response.IsSuccess)
+            {
+                switch(response.Error.Code)
+                {
+                    case 404:
+                        return NotFound(response);
+                    case 400:
+                        return BadRequest(response);
+                }
+            }
+
             return Ok(response);
         }
 

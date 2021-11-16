@@ -4,7 +4,6 @@ using BookShopBE.Common.Responses;
 using BookShopBE.Core.Repositories.Interfaces;
 using BookShopBE.Core.Services.Interfaces;
 using BookShopBE.Data.Dtos.Carts;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,9 +26,9 @@ namespace BookShopBE.Core.Services.Implementations
         #endregion
 
         #region Public
-        public async Task<Result<CartResponse>> GetCartsOfCustomer(Guid customerId)
+        public async Task<Result<CartResponse>> GetCartsOfUser(string userId)
         {
-            var carts = await _unitOfWork.Carts.GetAllCartOfCustomer(customerId);
+            var carts = await _unitOfWork.Carts.GetAllCartOfUser(userId);
             if (carts == null || carts.Count == 0)
             {
                 return Result<CartResponse>.Fail(new Error
@@ -41,8 +40,8 @@ namespace BookShopBE.Core.Services.Implementations
 
             var response = new CartResponse
             {
-                CustomerName = carts[0].Customer.CustomerName,
-                CustomerEmail = carts[0].Customer.CustomerEmail
+                UserName = carts[0].User.UserName,
+                UserEmail = carts[0].User.Email
             };
             response.BookInformations = _mapper.Map<IEnumerable<BookInCartDto>>(carts).ToList();
 
@@ -51,13 +50,13 @@ namespace BookShopBE.Core.Services.Implementations
 
         public async Task<Result> AddBookToCart(CartDto cartDto)
         {
-            var customer = await _unitOfWork.Customers.GetById(cartDto.CustomerId);
+            var customer = await _unitOfWork.Users.GetById(cartDto.UserId);
             if (customer == null)
             {
                 return new Result
                 {
                     IsSuccess = false,
-                    Error = new Error { Code = 404, Message = ErrorDetails.CUSTOMER_DOES_NOT_EXIST }
+                    Error = new Error { Code = 404, Message = ErrorDetails.USER_ID_DOES_NOT_EXIST }
                 };
             }
 
@@ -84,19 +83,19 @@ namespace BookShopBE.Core.Services.Implementations
             return new Result { IsSuccess = true, Error = null };
         }
 
-        public async Task<Result> DeleteCartOfCustomer(Guid customerId)
+        public async Task<Result> DeleteCartsOfUser(string userId)
         {
-            var user = await _unitOfWork.Customers.GetById(customerId);
+            var user = await _unitOfWork.Users.GetById(userId);
             if (user == null)
             {
                 return new Result
                 {
                     IsSuccess = false,
-                    Error = new Error { Code = 404, Message = ErrorDetails.CUSTOMER_DOES_NOT_EXIST }
+                    Error = new Error { Code = 404, Message = ErrorDetails.USER_ID_DOES_NOT_EXIST }
                 };
             }
 
-            var carts = await _unitOfWork.Carts.GetAllCartOfCustomer(customerId);
+            var carts = await _unitOfWork.Carts.GetAllCartOfUser(userId);
             if (carts == null || carts.Count == 0)
             {
                 return new Result

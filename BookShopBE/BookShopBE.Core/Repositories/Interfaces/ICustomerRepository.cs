@@ -1,12 +1,12 @@
 ﻿using BookShopBE.Common.Repository;
 using BookShopBE.Data.Models;
-using System;
 using System.Threading.Tasks;
 
 namespace BookShopBE.Core.Repositories.Interfaces
 {
-    public interface ICustomerRepository : IRepository<Customer>
+    public interface ICustomerRepository : IRepository<CustomerHasOrder>
     {
-        Task<Customer> GetById(Guid customerId);
+        Task<CustomerHasOrder> GetById(string customerId);
+        Task Add(CustomerHasOrder customer);
     }
 }

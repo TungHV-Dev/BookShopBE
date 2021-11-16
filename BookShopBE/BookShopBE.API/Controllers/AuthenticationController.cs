@@ -32,6 +32,18 @@ namespace BookShopBE.API.Controllers
         public async Task<IActionResult> RegisterUser([FromForm] RegisterRequest request)
         {
             var result = await _authenticationServices.RegisterAsync(request);
+
+            if(!result.IsSuccess)
+            {
+                switch(result.Error.Code)
+                {
+                    case 400:
+                        return BadRequest(result);
+                    case 404:
+                        return NotFound(result);
+                }
+            }
+
             return Ok(result);
         }
 
@@ -49,6 +61,17 @@ namespace BookShopBE.API.Controllers
             }
 
             var result = await _authenticationServices.AuthenticateAsync(request);
+            if(!result.IsSuccess)
+            {
+                switch(result.Error.Code)
+                {
+                    case 400:
+                        return BadRequest(result);
+                    case 404:
+                        return NotFound(result);
+                }
+            }
+
             var cookieOptions = new CookieOptions
             {
                 HttpOnly = true,
@@ -60,7 +83,7 @@ namespace BookShopBE.API.Controllers
 
         [HttpPost]
         [Route("Add-Role")]
-        [Authorize(Roles = "Adminstrator")]
+        [Authorize(Roles = RoleDetails.ADMINISTRATOR)]
         public async Task<IActionResult> AddRole([FromForm] AddRoleModel model)
         {
             var response = await _authenticationServices.AddRoleToUserAsync(model);
