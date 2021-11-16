@@ -1,12 +1,13 @@
 ﻿using BookShopBE.Common.Dtos;
-using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookShopBE.Data.Models
 {
     public class Feedback : ModelBase
     {
-        public Guid CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        public string CustomerId { get; set; }
+        [ForeignKey("CustomerId")]
+        public CustomerHasOrder Customer { get; set; }
 
         public int BookId { get; set; }
         public Book Book { get; set; }

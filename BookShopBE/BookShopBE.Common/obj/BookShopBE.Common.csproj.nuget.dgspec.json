@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\BookShopBE.Common.csproj": {}
+    "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\BookShopBE.Common.csproj": {}
   },
   "projects": {
-    "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\BookShopBE.Common.csproj": {
+    "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\BookShopBE.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\BookShopBE.Common.csproj",
+        "projectUniqueName": "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\BookShopBE.Common.csproj",
         "projectName": "BookShopBE.Common",
-        "projectPath": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\BookShopBE.Common.csproj",
-        "packagesPath": "C:\\Users\\HA VAN TUNG\\.nuget\\packages\\",
-        "outputPath": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\obj\\",
+        "projectPath": "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\BookShopBE.Common.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HA VAN TUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Mvc.Core": {
               "target": "Package",
@@ -72,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

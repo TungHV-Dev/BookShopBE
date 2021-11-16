@@ -53,7 +53,7 @@ namespace BookShopBE.Core.Services.Implementations
             return Result<IEnumerable<OrderResponse>>.Success(response.AsEnumerable());
         }
 
-        public async Task<Result<OrderResponse>> GetOrder(int orderId)
+        public async Task<Result<OrderResponse>> GetOrderByOrderId(int orderId)
         {
             var order = await _unitOfWork.Orders.GetById(orderId);
             if(order == null)
@@ -69,10 +69,15 @@ namespace BookShopBE.Core.Services.Implementations
             return Result<OrderResponse>.Success(response);
         }
 
+        //public async Task<Result<OrderResponse>> GetOrderByCustomerId(string customerId)
+        //{
+
+        //}
+
         public async Task<Result> CreateOrder(OrderDto order)
         {
-            var customer = await _unitOfWork.Customers.GetById(order.CustomerId);
-            if(customer == null)
+            var user = await _unitOfWork.Users.GetById(order.CustomerId);
+            if(user == null)
             {
                 return new Result
                 {
@@ -96,16 +101,60 @@ namespace BookShopBE.Core.Services.Implementations
                 CustomerId = order.CustomerId,
                 BookId = order.BookId,
                 OrderNumber = order.OrderNumber,
+                DeliveryAddress = order.DeliveryAddress,
                 CreatedDate = DateTime.Now,
                 TotalMoney = book.Price * order.OrderNumber,
                 IsSuccess = true
             };
+
+            var customer = _mapper.Map<CustomerHasOrder>(user);
+
+            await _unitOfWork.Customers.Add(customer);
             await _unitOfWork.Orders.Add(_order);
+            await _unitOfWork.CompleteAsync();
+            // Todo: add customer
             return new Result
             {
                 IsSuccess = true,
                 Error = null
             };
+        }
+
+        public async Task<Result> EditOrder(EditOrderDto order)
+        {
+            var user = await _unitOfWork.Users.GetById(order.CustomerId);
+            if (user == null)
+            {
+                return new Result
+                {
+                    IsSuccess = false,
+                    Error = new Error { Code = 404, Message = ErrorDetails.CUSTOMER_DOES_NOT_EXIST }
+                };
+            }
+
+            var _order = await _unitOfWork.Orders.GetById(order.OrderId);
+            if(_order == null)
+            {
+                return new Result
+                {
+                    IsSuccess = false,
+                    Error = new Error { Code = 404, Message = ErrorDetails.ORDER_ID_DOES_NOT_EXIST }
+                };
+            }
+
+            var book = await _unitOfWork.Books.GetById(order.BookId);
+            if (book.Quantity < order.OrderNumber)
+            {
+                return new Result
+                {
+                    IsSuccess = false,
+                    Error = new Error { Code = 400, Message = ErrorDetails.BOOK_QUANTITY_IS_NOT_ENOUGH }
+                };
+            }
+
+            await _unitOfWork.Orders.Update(order);
+            await _unitOfWork.CompleteAsync();
+            return new Result { IsSuccess = true, Error = null };
         }
 
         public async Task<Result> DeleteOrder(int orderId)

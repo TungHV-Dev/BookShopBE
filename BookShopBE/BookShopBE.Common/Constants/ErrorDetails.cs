@@ -7,6 +7,7 @@
 
         public const string CONFIRM_PASSWORD_IS_NOT_MATCH_WITH_PASSWORD = "Confirm password is not match with password";
         public const string INCORRECT_CREDENTIALS = "User's credentials are not incorrect";
+        public const string PASSWORD_IS_INVALID = "Password must have at least 6 characters; starting with a capital letter; including letters, numbers and 1 special character such as @, …";
 
         public const string BOOK_ID_DOES_NOT_EXIST = "Book id does not exist";
         public const string BOOK_QUANTITY_IS_NOT_ENOUGH = "The number of books in stock is not enough";

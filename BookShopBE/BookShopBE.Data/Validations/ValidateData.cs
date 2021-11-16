@@ -17,7 +17,7 @@ namespace BookShopBE.Data.Validations
         }
     }
 
-    public class FeedbackMessageDtoValidator : AbstractValidator<FeedbackMessageDto>
+    public class FeedbackMessageDtoValidator : AbstractValidator<FeedbackRequest>
     {
         public FeedbackMessageDtoValidator()
         {
@@ -26,7 +26,7 @@ namespace BookShopBE.Data.Validations
         }
     }
 
-    public class RateStarDtoValidator : AbstractValidator<RateStarDto>
+    public class RateStarDtoValidator : AbstractValidator<RateStarRequest>
     {
         public RateStarDtoValidator()
         {

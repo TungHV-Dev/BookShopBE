@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Database\\BookShopBE.Database.csproj": {}
+    "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Database\\BookShopBE.Database.csproj": {}
   },
   "projects": {
-    "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Database\\BookShopBE.Database.csproj": {
+    "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Database\\BookShopBE.Database.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Database\\BookShopBE.Database.csproj",
+        "projectUniqueName": "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Database\\BookShopBE.Database.csproj",
         "projectName": "BookShopBE.Database",
-        "projectPath": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Database\\BookShopBE.Database.csproj",
-        "packagesPath": "C:\\Users\\HA VAN TUNG\\.nuget\\packages\\",
-        "outputPath": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Database\\obj\\",
+        "projectPath": "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Database\\BookShopBE.Database.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Database\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HA VAN TUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -52,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

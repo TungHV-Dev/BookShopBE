@@ -3,10 +3,8 @@ using BookShopBE.Core.Repositories.Interfaces;
 using BookShopBE.Data.DataContext;
 using BookShopBE.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BookShopBE.Core.Repositories.Implementations
@@ -31,7 +29,7 @@ namespace BookShopBE.Core.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<Feedback> GetFeedbackToRateStar(Guid customerId, int bookId)
+        public async Task<Feedback> GetFeedbackToRateStar(string customerId, int bookId)
         {
             var response = await dbContext.Feedbacks.Where(fb => fb.CustomerId == customerId && fb.BookId == bookId).FirstOrDefaultAsync();
             return response;

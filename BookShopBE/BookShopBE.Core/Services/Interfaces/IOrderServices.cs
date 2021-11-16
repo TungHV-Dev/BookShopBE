@@ -9,8 +9,9 @@ namespace BookShopBE.Core.Services.Interfaces
     public interface IOrderServices
     {
         Task<Result<IEnumerable<OrderResponse>>> GetAllOrder(BaseQuery query);
-        Task<Result<OrderResponse>> GetOrder(int orderId);
+        Task<Result<OrderResponse>> GetOrderByOrderId(int orderId);
         Task<Result> CreateOrder(OrderDto order);
+        Task<Result> EditOrder(EditOrderDto order);
         Task<Result> DeleteOrder(int orderId);
         Task ExportOrderInformationToExcel();
     }

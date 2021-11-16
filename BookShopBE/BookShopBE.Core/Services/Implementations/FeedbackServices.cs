@@ -54,8 +54,18 @@ namespace BookShopBE.Core.Services.Implementations
             return Result<IEnumerable<FeedbackResponse>>.Success(response);
         }
 
-        public async Task<Result> SendFeedbackMessage(FeedbackMessageDto dto)
+        public async Task<Result> SendFeedbackMessage(FeedbackDto dto)
         {
+            var book = await _unitOfWork.Books.GetById(dto.BookId);
+            if(book == null)
+            {
+                return new Result
+                {
+                    IsSuccess = false,
+                    Error = new Error { Code = 404, Message = ErrorDetails.BOOK_ID_DOES_NOT_EXIST }
+                };
+            }
+
             var feedback = new Feedback
             {
                 CustomerId = dto.CustomerId,
@@ -64,8 +74,8 @@ namespace BookShopBE.Core.Services.Implementations
                 CreatedDate = DateTime.Now
             };
 
-            var customer = await _unitOfWork.Customers.GetById(dto.CustomerId);
-            feedback.CreatedBy = customer.CustomerEmail;
+            var customer = await _unitOfWork.Users.GetById(dto.CustomerId.ToString());
+            feedback.CreatedBy = customer.Email;
             await _unitOfWork.Feedbacks.Add(feedback);
             await _unitOfWork.CompleteAsync();
             return new Result
@@ -119,6 +129,7 @@ namespace BookShopBE.Core.Services.Implementations
 
         public async Task<Result> RateStar(RateStarDto dto)
         {
+            var customer = await _unitOfWork.Users.GetById(dto.CustomerId);
             var feedback = await _unitOfWork.Feedbacks.GetFeedbackToRateStar(dto.CustomerId, dto.BookId);
             if(feedback == null)
             {
@@ -129,8 +140,7 @@ namespace BookShopBE.Core.Services.Implementations
                     StarRate = dto.StarRate,
                     CreatedDate = DateTime.Now
                 };
-                var customer = await _unitOfWork.Customers.GetById(dto.CustomerId);
-                _feedback.CreatedBy = customer.CustomerEmail;
+                _feedback.CreatedBy = customer.Email;
                 await _unitOfWork.Feedbacks.Add(_feedback);
                 await _unitOfWork.CompleteAsync();
                 return new Result { IsSuccess = true, Error = null };

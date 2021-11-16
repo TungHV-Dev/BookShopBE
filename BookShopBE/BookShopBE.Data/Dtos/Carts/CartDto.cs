@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace BookShopBE.Data.Dtos.Carts
+﻿namespace BookShopBE.Data.Dtos.Carts
 {
     public class CartDto
     {
-        public Guid CustomerId { get; set; }
+        public string UserId { get; set; }
         public int BookId { get; set; }
     }
 }

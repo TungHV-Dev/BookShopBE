@@ -7222,19 +7222,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HA VAN TUNG\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.API\\BookShopBE.API.csproj",
+      "projectUniqueName": "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.API\\BookShopBE.API.csproj",
       "projectName": "BookShopBE.API",
-      "projectPath": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.API\\BookShopBE.API.csproj",
-      "packagesPath": "C:\\Users\\HA VAN TUNG\\.nuget\\packages\\",
-      "outputPath": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.API\\obj\\",
+      "projectPath": "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.API\\BookShopBE.API.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HA VAN TUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7246,12 +7246,13 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Core\\BookShopBE.Core.csproj": {
-              "projectPath": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Core\\BookShopBE.Core.csproj"
+            "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Core\\BookShopBE.Core.csproj": {
+              "projectPath": "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Core\\BookShopBE.Core.csproj"
             },
-            "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Data\\BookShopBE.Data.csproj": {
-              "projectPath": "F:\\Git Project\\BookShopBE\\BookShopBE\\BookShopBE.Data\\BookShopBE.Data.csproj"
+            "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Data\\BookShopBE.Data.csproj": {
+              "projectPath": "E:\\Git_Project\\BookShopBE\\BookShopBE\\BookShopBE.Data\\BookShopBE.Data.csproj"
             }
           }
         }
@@ -7264,6 +7265,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.Google": {
             "target": "Package",
@@ -7322,7 +7324,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -3,13 +3,12 @@ using BookShopBE.Core.Repositories.Interfaces;
 using BookShopBE.Data.DataContext;
 using BookShopBE.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookShopBE.Core.Repositories.Implementations
 {
-    public class CustomerRepository : RepositoryBase<Customer>, ICustomerRepository
+    public class CustomerRepository : RepositoryBase<CustomerHasOrder>, ICustomerRepository
     {
         private readonly BookShopDbContext dbContext;
         public CustomerRepository(BookShopDbContext context) : base(context)
@@ -17,9 +16,17 @@ namespace BookShopBE.Core.Repositories.Implementations
             dbContext = context;
         }
 
-        public async Task<Customer> GetById(Guid customerId)
+        public async Task<CustomerHasOrder> GetById(string customerId)
         {
-            return await dbContext.Customers.Where(cus => cus.Id == customerId).FirstOrDefaultAsync();
+            return await dbContext.CustomerHasOrders.Where(cus => cus.CustomerId == customerId).FirstOrDefaultAsync();
         }
+
+        public async Task Add(CustomerHasOrder customer)
+        {
+            dbContext.CustomerHasOrders.Add(customer);
+            await dbContext.SaveChangesAsync();
+        }
+
+
     }
 }

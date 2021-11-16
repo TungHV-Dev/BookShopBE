@@ -8,7 +8,7 @@ namespace BookShopBE.Core.Services.Interfaces
     public interface IFeedbackServices
     {
         Task<Result<IEnumerable<FeedbackResponse>>> GetFeedbackOfBook(int bookId);
-        Task<Result> SendFeedbackMessage(FeedbackMessageDto dto);
+        Task<Result> SendFeedbackMessage(FeedbackDto dto);
         Task<Result> EditFeedbackMessage(int feedbackId, string message);
         Task<Result> Delete(int feedbackId);
         Task<Result> RateStar(RateStarDto dto);

@@ -1,0 +1,9 @@
+F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Database\bin\Debug\netcoreapp3.1\BookShopBE.Database.deps.json
+F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Database\bin\Debug\netcoreapp3.1\BookShopBE.Database.dll
+F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Database\bin\Debug\netcoreapp3.1\BookShopBE.Database.pdb
+F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Database\obj\Debug\netcoreapp3.1\BookShopBE.Database.csprojAssemblyReference.cache
+F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Database\obj\Debug\netcoreapp3.1\BookShopBE.Database.AssemblyInfoInputs.cache
+F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Database\obj\Debug\netcoreapp3.1\BookShopBE.Database.AssemblyInfo.cs
+F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Database\obj\Debug\netcoreapp3.1\BookShopBE.Database.csproj.CoreCompileInputs.cache
+F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Database\obj\Debug\netcoreapp3.1\BookShopBE.Database.dll
+F:\Git Project\BookShopBE\BookShopBE\BookShopBE.Database\obj\Debug\netcoreapp3.1\BookShopBE.Database.pdb

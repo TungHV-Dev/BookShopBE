@@ -13,6 +13,7 @@ namespace BookShopBE.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [ApiVersion("1.0")]
+    [Authorize]
     public class FeedbackController : ControllerBase
     {
         #region Properties
@@ -45,21 +46,26 @@ namespace BookShopBE.API.Controllers
 
         [HttpPost]
         [Route("Send-Feedback-Message")]
-        public async Task<ActionResult<Result<Result>>> SendFeedbackMessage(int bookId, string message)
+        public async Task<ActionResult<Result<Result>>> SendFeedbackMessage([FromForm] FeedbackRequest request)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var dto = new FeedbackMessageDto { CustomerId = Guid.Parse(userId), BookId = bookId, Message = message };
+            var dto = new FeedbackDto { CustomerId = userId, BookId = request.BookId, Message = request.Message };
 
             var response = await _feedbackServices.SendFeedbackMessage(dto);
+            if(!response.IsSuccess)
+            {
+                return NotFound(response);
+            }
+
             return Ok(response);
         }
 
         [HttpPut]
         [Route("Edit-Feedback-Message")]
-        public async Task<ActionResult<Result<Result>>> EditFeedbackMessage(int feedbackId, [FromForm] string message)
+        public async Task<ActionResult<Result<Result>>> EditFeedbackMessage(int feedbackId, string message)
         {
             var response = await _feedbackServices.EditFeedbackMessage(feedbackId, message);
-            if (response.Error != null)
+            if (!response.IsSuccess)
             {
                 return NotFound(response);
             }
@@ -68,10 +74,10 @@ namespace BookShopBE.API.Controllers
 
         [HttpPost]
         [Route("Rate-Star")]
-        public async Task<ActionResult<Result<Result>>> RateStar(int bookId, int starRate)
+        public async Task<ActionResult<Result<Result>>> RateStar([FromForm] RateStarRequest request)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var dto = new RateStarDto { CustomerId = Guid.Parse(userId), BookId = bookId, StarRate = starRate };
+            var dto = new RateStarDto { CustomerId = userId, BookId = request.BookId, StarRate = request.StarRate };
 
             var response = await _feedbackServices.RateStar(dto);
             return Ok(response);

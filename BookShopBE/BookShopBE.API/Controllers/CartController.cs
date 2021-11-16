@@ -1,10 +1,8 @@
-﻿using BookShopBE.Common.Constants;
-using BookShopBE.Common.Responses;
+﻿using BookShopBE.Common.Responses;
 using BookShopBE.Core.Services.Interfaces;
 using BookShopBE.Data.Dtos.Carts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -13,7 +11,7 @@ namespace BookShopBE.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [ApiVersion("1.0")]
-    [Authorize(Roles = RoleDetails.CUSTOMER)]
+    [Authorize]
     public class CartController : ControllerBase
     {
         #region Properties
@@ -33,7 +31,7 @@ namespace BookShopBE.API.Controllers
         public async Task<ActionResult<Result<CartResponse>>> GetCartsOfCustomer()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var response = await _cartServices.GetCartsOfCustomer(Guid.Parse(userId));
+            var response = await _cartServices.GetCartsOfUser(userId);
             if(response.IsSuccess == false)
             {
                 return NotFound(response);
@@ -46,7 +44,7 @@ namespace BookShopBE.API.Controllers
         public async Task<ActionResult<Result>> AddBookToCart(int bookId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var cartDto = new CartDto { CustomerId = Guid.Parse(userId), BookId = bookId };
+            var cartDto = new CartDto { UserId = userId, BookId = bookId };
 
             var response = await _cartServices.AddBookToCart(cartDto);
             if(response.IsSuccess == false)
@@ -61,7 +59,7 @@ namespace BookShopBE.API.Controllers
         public async Task<ActionResult<Result>> DeleteBookFromCart(int bookId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var cartDto = new CartDto { CustomerId = Guid.Parse(userId), BookId = bookId };
+            var cartDto = new CartDto { UserId = userId, BookId = bookId };
 
             var response = await _cartServices.DeleteBookFromCart(cartDto);
             if (response.IsSuccess == false)
@@ -73,10 +71,10 @@ namespace BookShopBE.API.Controllers
 
         [HttpDelete]
         [Route("Delete-Cart-Of-Customer")]
-        public async Task<ActionResult<Result>> DeleteCartOfCustomer()
+        public async Task<ActionResult<Result>> DeleteCartsOfUser()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var response = await _cartServices.DeleteCartOfCustomer(Guid.Parse(userId));
+            var response = await _cartServices.DeleteCartsOfUser(userId);
             if (response.IsSuccess == false)
             {
                 return NotFound(response);

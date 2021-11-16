@@ -10,8 +10,8 @@ namespace BookShopBE.Data.Validations
         public static IServiceCollection RegisterModelValidation(this IServiceCollection services)
         {
             services.AddTransient<IValidator<BookDto>, BookValidator>();
-            services.AddTransient<IValidator<FeedbackMessageDto>, FeedbackMessageDtoValidator>();
-            services.AddTransient<IValidator<RateStarDto>, RateStarDtoValidator>();
+            services.AddTransient<IValidator<FeedbackRequest>, FeedbackMessageDtoValidator>();
+            services.AddTransient<IValidator<RateStarRequest>, RateStarDtoValidator>();
 
             return services;
         }
